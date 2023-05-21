@@ -8,19 +8,17 @@
 import XCTest
 @testable import SetGame
 
-final class SetCardsTests: XCTestCase {
+final class SetupCardsTests: XCTestCase {
     
     private var setGame: SetGame? = SetGame()
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        self.setGame = SetGame()
-        setGame?.setupCards()
     }
 
     override func tearDownWithError() throws {
         try super.tearDownWithError()
-        self.setGame = nil
+        setGame = nil
     }
     
     private func makeHashStringForCardTriplet(_ triplet: SetGame.Triplet, _ first: String, _ second: String, _ third: String) -> String {
@@ -59,16 +57,4 @@ final class SetCardsTests: XCTestCase {
         
         XCTAssertEqual(hashSet.count, 81, "Cards must be unique")
     }
-
-    func testPerformance() throws {
-        self.measure(
-            metrics: [
-                XCTClockMetric(),
-                XCTCPUMetric()
-            ]
-        ) {
-            setGame?.setupCards()
-        }
-    }
-
 }
