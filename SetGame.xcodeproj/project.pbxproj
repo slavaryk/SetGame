@@ -18,7 +18,9 @@
 		AD3CB0A82A00015000FA2550 /* SetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CB0A72A00015000FA2550 /* SetGame.swift */; };
 		AD3CFF7E2A18D78200208E99 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF7D2A18D78200208E99 /* Card.swift */; };
 		AD3CFF802A18F7C500208E99 /* StandardSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF7F2A18F7C500208E99 /* StandardSetGame.swift */; };
-		AD3CFF832A1900F200208E99 /* FigureStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF822A1900F200208E99 /* FigureStrategy.swift */; };
+		AD3CFF832A1900F200208E99 /* ShapeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */; };
+		AD6A599A2A1FC6EE00D333FC /* ShadingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */; };
+		ADA0B9312A2260F3006EAEE4 /* ColorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */; };
 		ADCF86752A10E086001457BB /* AddExtraCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF86742A10E086001457BB /* AddExtraCardsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,7 +56,9 @@
 		AD3CB0A72A00015000FA2550 /* SetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGame.swift; sourceTree = "<group>"; };
 		AD3CFF7D2A18D78200208E99 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		AD3CFF7F2A18F7C500208E99 /* StandardSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSetGame.swift; sourceTree = "<group>"; };
-		AD3CFF822A1900F200208E99 /* FigureStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FigureStrategy.swift; sourceTree = "<group>"; };
+		AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeStrategy.swift; sourceTree = "<group>"; };
+		AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingStrategy.swift; sourceTree = "<group>"; };
+		ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStrategy.swift; sourceTree = "<group>"; };
 		ADCF86742A10E086001457BB /* AddExtraCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExtraCardsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,7 +151,9 @@
 		AD3CFF812A19009E00208E99 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				AD3CFF822A1900F200208E99 /* FigureStrategy.swift */,
+				AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */,
+				AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */,
+				ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -299,9 +305,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADA0B9312A2260F3006EAEE4 /* ColorStrategy.swift in Sources */,
 				AD3CB0A82A00015000FA2550 /* SetGame.swift in Sources */,
 				AD1F55F12A0171B80033F427 /* Game.swift in Sources */,
-				AD3CFF832A1900F200208E99 /* FigureStrategy.swift in Sources */,
+				AD6A599A2A1FC6EE00D333FC /* ShadingStrategy.swift in Sources */,
+				AD3CFF832A1900F200208E99 /* ShapeStrategy.swift in Sources */,
 				AD3CFF802A18F7C500208E99 /* StandardSetGame.swift in Sources */,
 				AD3CB07E2A00004300FA2550 /* SetGameApp.swift in Sources */,
 				AD3CFF7E2A18D78200208E99 /* Card.swift in Sources */,

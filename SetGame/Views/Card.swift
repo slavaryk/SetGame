@@ -12,44 +12,74 @@ struct Card: View {
     
     var body: some View {
         ZStack {
-            let cardShape = RoundedRectangle(cornerRadius: 20)
+            let cardShape = RoundedRectangle(cornerRadius: DrawingConstants.CornerRadius)
+            let figure = Figure(card: card)
             
             cardShape.fill().foregroundColor(.white)
-            cardShape.stroke(lineWidth: 3)
+            cardShape.stroke(lineWidth: DrawingConstants.StrokeWidth)
             
-            ZStack { Figure(card: card) }
-//            TODO: Add geometry reader dependency
-            .frame(width: 60, height: 30)
-            .foregroundColor(.orange)
+            VStack {
+                ForEach((1...card.quantity.rawValue), id: \.self) { _ in
+                    ZStack {
+                        figure.fill(figure.getColor()).opacity(figure.getShadingOpacity())
+                        figure.stroke(lineWidth: DrawingConstants.StrokeWidth).foregroundColor(figure.getColor())
+                    }
+                    .frame(width: DrawingConstants.FigureFrameWidth, height: DrawingConstants.FigureFrameHeight)
+                }
+            }
+            
         }
-        .foregroundColor(.orange)
+        .foregroundColor(.gray)
     }
     
-    struct DrawingConstants {
-        let CornerRadius = 20
-        let StrokeWidth = 3
-        
+    private struct DrawingConstants {
+        static let CornerRadius = CGFloat(10)
+        static let StrokeWidth = CGFloat(2)
+        static let FigureFrameWidth = CGFloat(44)
+        static let FigureFrameHeight = CGFloat(DrawingConstants.FigureFrameWidth/2)
     }
 }
 
 struct Figure: Shape {
     let card: SetGame.Card
-    let figureStrategy: FigureStrategy
+    let shapeStrategy: ShapeStrategy
+    let shadingStrategy: ShadingStrategy
+    let colorStrategy: ColorStrategy
     
-    init(card: SetGame.Card) {
-        self.card = card
-        figureStrategy = Figure.chooseStrategy(card: card)
-    }
-    
-    static func chooseStrategy(card: SetGame.Card) -> FigureStrategy {
+    static private func chooseShapeStrategy(card: SetGame.Card) -> ShapeStrategy {
         switch(card.shape) {
-        case .first: return PillFigure()
-        case .second: return RhombusFigure()
-        case .third: return AmoebaFigure()
+        case .first: return PillShape()
+        case .second: return RhombusShape()
+        case .third: return AmoebaShape()
         }
     }
     
-    func path(in rect: CGRect) -> Path {
-        return figureStrategy.buildPath(in: rect)
+    static private func chooseShadingStrategy(card: SetGame.Card) -> ShadingStrategy {
+        switch(card.shading) {
+        case .first: return FilledShading()
+        case .second: return TranslucentShading()
+        case .third: return ClearShading()
+        }
     }
+    
+    static private func chooseColorStrategy(card: SetGame.Card) -> ColorStrategy {
+        switch(card.color) {
+        case .first: return GreenColor()
+        case .second: return BlueColor()
+        case .third: return PinkColor()
+        }
+    }
+    
+    init(card: SetGame.Card) {
+        self.card = card
+        shapeStrategy = Figure.chooseShapeStrategy(card: card)
+        shadingStrategy = Figure.chooseShadingStrategy(card: card)
+        colorStrategy = Figure.chooseColorStrategy(card: card)
+    }
+    
+    func path(in rect: CGRect) -> Path { shapeStrategy.buildPath(in: rect) }
+    
+    func getShadingOpacity() -> CGFloat { shadingStrategy.getShadingOpacity() }
+    
+    func getColor() -> Color { colorStrategy.getColor() }
 }
