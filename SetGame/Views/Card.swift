@@ -15,8 +15,8 @@ struct Card: View {
             let cardShape = RoundedRectangle(cornerRadius: DrawingConstants.CornerRadius)
             let figure = Figure(card: card)
             
-            cardShape.fill().foregroundColor(.white)
-            cardShape.stroke(lineWidth: DrawingConstants.StrokeWidth)
+            cardShape.stroke(lineWidth: DrawingConstants.StrokeWidth).shadow(color: .black, radius: card.isSelected ? 2 : 0, y: 1).animation(.linear(duration: 0.1), value: card.isSelected)
+            cardShape.fill().foregroundColor(card.isSelected ? .yellow : .white).animation(.linear(duration: 0.1), value: card.isSelected)
             
             VStack {
                 ForEach((1...card.quantity.rawValue), id: \.self) { _ in
@@ -29,7 +29,7 @@ struct Card: View {
             }
             
         }
-        .foregroundColor(.gray)
+        .foregroundColor(.black)
     }
     
     private struct DrawingConstants {

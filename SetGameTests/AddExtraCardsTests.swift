@@ -23,7 +23,7 @@ final class AddExtraCardsTests: XCTestCase {
 
     func testAddition() throws {
         setGame?.addExtraCards()
-        XCTAssertEqual(setGame?.pileSize, 15, "PlayingDeck property value should be 15 after extra cards addition")
+        XCTAssertEqual(setGame?.pileSize, 15, "Property value of pileSize should be 15 after extra cards addition")
     }
     
     func testAdditionWithFullDeck() throws {

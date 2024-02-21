@@ -8,15 +8,27 @@
 import SwiftUI
 
 struct Game: View {
-    private var viewModel = StandardSetGame()
+    let addCardsButtonText = "More cards"
+    
+    @ObservedObject private var viewModel = StandardSetGame()
     
     var body: some View {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
-            ForEach(viewModel.pile) { card in
-                Card(card: card).aspectRatio(2/3, contentMode: .fit)
+        VStack(spacing: 30.0) {
+            ScrollView {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 70))]) {
+                    ForEach(viewModel.pile) { card in
+                        Card(card: card).aspectRatio(2/3, contentMode: .fit)
+                            .onTapGesture {
+                                viewModel.toggleCardSelection(cardId: card.id)
+                            }
+                    }
+                }
+                .padding(.horizontal)
             }
+            
+            GameButton { Text(addCardsButtonText) }
+            action: { viewModel.addExtraCards() }
         }
-        .padding(.horizontal)
     }
 }
 
