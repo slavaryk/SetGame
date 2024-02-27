@@ -48,9 +48,9 @@ final class SetupCardsTests: XCTestCase {
             cardHash.append(makeHashStringForCardTriplet(card.color, "re", "g", "v"))
             
             switch card.quantity {
-            case .one: cardHash.append("1")
-            case .two: cardHash.append("2")
-            case .three: cardHash.append("3")
+            case .first: cardHash.append("1")
+            case .second: cardHash.append("2")
+            case .third: cardHash.append("3")
             }
             hashSet.insert(cardHash)
         }

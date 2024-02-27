@@ -19,7 +19,7 @@ struct Card: View {
             cardShape.fill().foregroundColor(card.isSelected ? .yellow : .white).animation(.linear(duration: 0.1), value: card.isSelected)
             
             VStack {
-                ForEach((1...card.quantity.rawValue), id: \.self) { _ in
+				ForEach((1...figure.getQuantity()), id: \.self) { _ in
                     ZStack {
                         figure.fill(figure.getColor()).opacity(figure.getShadingOpacity())
                         figure.stroke(lineWidth: DrawingConstants.StrokeWidth).foregroundColor(figure.getColor())
@@ -45,7 +45,8 @@ struct Figure: Shape {
     let shapeStrategy: ShapeStrategy
     let shadingStrategy: ShadingStrategy
     let colorStrategy: ColorStrategy
-    
+	let quantityStrategy: QuantityStrategy
+
     static private func chooseShapeStrategy(card: SetGame.Card) -> ShapeStrategy {
         switch(card.shape) {
         case .first: return PillShape()
@@ -69,12 +70,21 @@ struct Figure: Shape {
         case .third: return PinkColor()
         }
     }
-    
+
+	static private func chooseQuantityStrategy(card: SetGame.Card) -> QuantityStrategy {
+		switch(card.quantity) {
+		case .first: return QuantityOfOne()
+		case .second: return QuantityOfTwo()
+		case .third: return QuantityOfThree()
+		}
+	}
+
     init(card: SetGame.Card) {
         self.card = card
         shapeStrategy = Figure.chooseShapeStrategy(card: card)
         shadingStrategy = Figure.chooseShadingStrategy(card: card)
         colorStrategy = Figure.chooseColorStrategy(card: card)
+		quantityStrategy = Figure.chooseQuantityStrategy(card: card)
     }
     
     func path(in rect: CGRect) -> Path { shapeStrategy.buildPath(in: rect) }
@@ -82,4 +92,6 @@ struct Figure: Shape {
     func getShadingOpacity() -> CGFloat { shadingStrategy.getShadingOpacity() }
     
     func getColor() -> Color { colorStrategy.getColor() }
+
+	func getQuantity() -> Int { quantityStrategy.getQuantity() }
 }

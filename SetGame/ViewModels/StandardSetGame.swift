@@ -9,13 +9,22 @@ import SwiftUI
 
 class StandardSetGame: ObservableObject {
     typealias SetGameError = SetGame.SetGameError
-    
+
+	static let LENGTH_TO_CHECK_CARDS = 3
+
     @Published var setGame: SetGame = SetGame()
     
     var pile: [SetGame.Card] { setGame.pile }
-    
-    func addExtraCards() { setGame.addExtraCards() }
-    
+	var selectedCards: [SetGame.Card] { setGame.selectedCards }
+
+	func addExtraCards() {
+		setGame.addExtraCards()
+	}
+
+	func checkIfCardsInSet() -> Bool {
+		setGame.checkIfCardsInSet(selectedCards)
+	}
+
     func toggleCardSelection(cardId: Int) {
         do {
             try setGame.toggleCardSelection(id: cardId)
@@ -24,5 +33,19 @@ class StandardSetGame: ObservableObject {
         } catch {
             print("Unexpected error: \(error)")
         }
+
+		checkSelectedCardsIfReady()
     }
+
+	func checkSelectedCardsIfReady() {
+		if selectedCards.count == StandardSetGame.LENGTH_TO_CHECK_CARDS {
+			if checkIfCardsInSet() {
+				markSelectedCardsAsInSetAndUnselectThem()
+			}
+		}
+	}
+
+	func markSelectedCardsAsInSetAndUnselectThem() {
+		setGame.markAsSetAndUnselect(selectedCards)
+	}
 }

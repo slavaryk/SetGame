@@ -20,9 +20,11 @@
 		AD3CFF802A18F7C500208E99 /* StandardSetGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF7F2A18F7C500208E99 /* StandardSetGame.swift */; };
 		AD3CFF832A1900F200208E99 /* ShapeStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */; };
 		AD6A599A2A1FC6EE00D333FC /* ShadingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */; };
-		AD77EACA2B8624EC0012BC0D /* CheckSelectedCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77EAC92B8624EC0012BC0D /* CheckSelectedCardsTests.swift */; };
+		AD77EACA2B8624EC0012BC0D /* CheckIfCardsInSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77EAC92B8624EC0012BC0D /* CheckIfCardsInSetTests.swift */; };
 		ADA0B9312A2260F3006EAEE4 /* ColorStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */; };
 		ADCF86752A10E086001457BB /* AddExtraCardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADCF86742A10E086001457BB /* AddExtraCardsTests.swift */; };
+		ADE2FDCF2B8E46BA00347E66 /* QuantityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FDCE2B8E46BA00347E66 /* QuantityStrategy.swift */; };
+		ADE2FDD12B8E4C0D00347E66 /* CheckEqualityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE2FDD02B8E4C0D00347E66 /* CheckEqualityTests.swift */; };
 		ADE5A4742A2CE47300F76650 /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADE5A4732A2CE47300F76650 /* GameButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,9 +62,11 @@
 		AD3CFF7F2A18F7C500208E99 /* StandardSetGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSetGame.swift; sourceTree = "<group>"; };
 		AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeStrategy.swift; sourceTree = "<group>"; };
 		AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadingStrategy.swift; sourceTree = "<group>"; };
-		AD77EAC92B8624EC0012BC0D /* CheckSelectedCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSelectedCardsTests.swift; sourceTree = "<group>"; };
+		AD77EAC92B8624EC0012BC0D /* CheckIfCardsInSetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfCardsInSetTests.swift; sourceTree = "<group>"; };
 		ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStrategy.swift; sourceTree = "<group>"; };
 		ADCF86742A10E086001457BB /* AddExtraCardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExtraCardsTests.swift; sourceTree = "<group>"; };
+		ADE2FDCE2B8E46BA00347E66 /* QuantityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityStrategy.swift; sourceTree = "<group>"; };
+		ADE2FDD02B8E4C0D00347E66 /* CheckEqualityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEqualityTests.swift; sourceTree = "<group>"; };
 		ADE5A4732A2CE47300F76650 /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,7 +143,8 @@
 				AD3CB08E2A00004400FA2550 /* SetupCardsTests.swift */,
 				AD1F55F22A01724C0033F427 /* ToggleCardSelectionTests.swift */,
 				ADCF86742A10E086001457BB /* AddExtraCardsTests.swift */,
-				AD77EAC92B8624EC0012BC0D /* CheckSelectedCardsTests.swift */,
+				AD77EAC92B8624EC0012BC0D /* CheckIfCardsInSetTests.swift */,
+				ADE2FDD02B8E4C0D00347E66 /* CheckEqualityTests.swift */,
 			);
 			path = SetGameTests;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				AD3CFF822A1900F200208E99 /* ShapeStrategy.swift */,
 				AD6A59992A1FC6EE00D333FC /* ShadingStrategy.swift */,
 				ADA0B9302A2260F3006EAEE4 /* ColorStrategy.swift */,
+				ADE2FDCE2B8E46BA00347E66 /* QuantityStrategy.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 				AD3CFF832A1900F200208E99 /* ShapeStrategy.swift in Sources */,
 				AD3CFF802A18F7C500208E99 /* StandardSetGame.swift in Sources */,
 				AD3CB07E2A00004300FA2550 /* SetGameApp.swift in Sources */,
+				ADE2FDCF2B8E46BA00347E66 /* QuantityStrategy.swift in Sources */,
 				ADE5A4742A2CE47300F76650 /* GameButton.swift in Sources */,
 				AD3CFF7E2A18D78200208E99 /* Card.swift in Sources */,
 			);
@@ -329,8 +336,9 @@
 			files = (
 				AD1F55F32A01724C0033F427 /* ToggleCardSelectionTests.swift in Sources */,
 				ADCF86752A10E086001457BB /* AddExtraCardsTests.swift in Sources */,
+				ADE2FDD12B8E4C0D00347E66 /* CheckEqualityTests.swift in Sources */,
 				AD3CB08F2A00004400FA2550 /* SetupCardsTests.swift in Sources */,
-				AD77EACA2B8624EC0012BC0D /* CheckSelectedCardsTests.swift in Sources */,
+				AD77EACA2B8624EC0012BC0D /* CheckIfCardsInSetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
