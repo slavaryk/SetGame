@@ -21,6 +21,10 @@ class StandardSetGame: ObservableObject {
 		setGame.addExtraCards()
 	}
 
+	func removeExtraCardsIfNeeded() {
+		setGame.removeExtraCardsIfNeeded()
+	}
+
 	func checkIfCardsInSet() -> Bool {
 		setGame.checkIfCardsInSet(selectedCards)
 	}
@@ -41,6 +45,7 @@ class StandardSetGame: ObservableObject {
 		if selectedCards.count == StandardSetGame.LENGTH_TO_CHECK_CARDS {
 			if checkIfCardsInSet() {
 				markSelectedCardsAsInSetAndUnselectThem()
+				removeExtraCardsIfNeeded()
 			}
 		}
 	}

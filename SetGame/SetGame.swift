@@ -7,7 +7,7 @@
 
 struct SetGame {
     private static let MIN_PILE_SIZE_BEFORE_EMPTINESS = 12
-    private static let EXTRA_CARDS_GROWTH = 3
+    private static let EXTRA_CARDS_DELTA = 3
     
     private(set) var pileSize: Int = SetGame.MIN_PILE_SIZE_BEFORE_EMPTINESS
     private(set) var cards: [Card] = []
@@ -16,8 +16,14 @@ struct SetGame {
 
     var selectedCards: [Card] { freeCards.filter { $0.isSelected } }
 
-    var pile: [Card] { Array(freeCards[0..<pileSize]) }
-    
+	var pile: [Card] {
+		if (pileSize <= freeCards.count) {
+			return Array(freeCards[0..<pileSize])
+		} else {
+			return freeCards
+		}
+	}
+
     init() {
         setupCards()
     }
@@ -46,17 +52,21 @@ struct SetGame {
         guard let cardIndex = cards.firstIndex(where: { $0.id == id }) else { throw SetGameError.noSuchId(id: id) }
         cards[cardIndex].isSelected = !cards[cardIndex].isSelected
     }
-    
+
     mutating func addExtraCards() {
         let remainingCards = freeCards.count - pileSize
-        
-        if remainingCards >= SetGame.EXTRA_CARDS_GROWTH {
-            pileSize += SetGame.EXTRA_CARDS_GROWTH
-        } else {
-            pileSize += remainingCards
-        }
+		pileSize += min(remainingCards, SetGame.EXTRA_CARDS_DELTA)
     }
-    
+
+	/**
+	 TODO:
+	 1) Write tests []
+	 */
+	mutating func removeExtraCardsIfNeeded() {
+		let newSize = pileSize - SetGame.EXTRA_CARDS_DELTA
+		pileSize = max(newSize, SetGame.MIN_PILE_SIZE_BEFORE_EMPTINESS)
+	}
+
     func checkIfCardsInSet(_ cardList: [Card]) -> Bool {
 		return checkForEqualityOrInequalityOf(cardList, for: "shape")
 			&& checkForEqualityOrInequalityOf(cardList, for: "shading")
