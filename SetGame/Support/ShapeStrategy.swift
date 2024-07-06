@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol ShapeStrategy {
+protocol ShapeStrategy: Sendable {
     func buildPath(in rect: CGRect) -> Path
 }
 

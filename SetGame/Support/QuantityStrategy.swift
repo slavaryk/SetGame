@@ -5,7 +5,7 @@
 //  Created by Slava Rykov on 27.02.2024.
 //
 
-protocol QuantityStrategy {
+protocol QuantityStrategy: Sendable {
 	func getQuantity() -> Int
 }
 

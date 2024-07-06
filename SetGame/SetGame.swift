@@ -6,9 +6,9 @@
 //
 
 struct SetGame {
-    private static let MIN_PILE_SIZE_BEFORE_EMPTINESS = 12
-    private static let EXTRA_CARDS_DELTA = 3
-    
+	static let MIN_PILE_SIZE_BEFORE_EMPTINESS = 12
+	static let EXTRA_CARDS_DELTA = 3
+
     private(set) var pileSize: Int = SetGame.MIN_PILE_SIZE_BEFORE_EMPTINESS
     private(set) var cards: [Card] = []
 
@@ -27,7 +27,7 @@ struct SetGame {
     init() {
         setupCards()
     }
-    
+
     mutating func setupCards() {
         var idCounter = 1
         
@@ -58,10 +58,6 @@ struct SetGame {
 		pileSize += min(remainingCards, SetGame.EXTRA_CARDS_DELTA)
     }
 
-	/**
-	 TODO:
-	 1) Write tests []
-	 */
 	mutating func removeExtraCardsIfNeeded() {
 		let newSize = pileSize - SetGame.EXTRA_CARDS_DELTA
 		pileSize = max(newSize, SetGame.MIN_PILE_SIZE_BEFORE_EMPTINESS)
@@ -96,6 +92,10 @@ struct SetGame {
 		return isEqual
 	}
 
+	/**
+	 TODO:
+	 1) Write tests []
+	 */
 	func checkInequalityOf(_ cardList: [Card], for key: String) -> Bool {
 		var isUnequal = false
 
@@ -108,6 +108,10 @@ struct SetGame {
 		return isUnequal
 	}
 
+	/**
+	 TODO:
+	1) Write tests []
+	 */
 	mutating func markAsSetAndUnselect(_ cardList: [Card]) {
 		for card in cardList {
 			let cardIndex = cards.firstIndex(where: { $0.id == card.id })
@@ -136,6 +140,7 @@ struct SetGame {
 			}
 		}
     }
+
     enum Triplet: CaseIterable {
         case first, second, third
     }

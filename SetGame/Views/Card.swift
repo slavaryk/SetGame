@@ -15,9 +15,9 @@ struct Card: View {
             let cardShape = RoundedRectangle(cornerRadius: DrawingConstants.CornerRadius)
             let figure = Figure(card: card)
             
-            cardShape.stroke(lineWidth: DrawingConstants.StrokeWidth).shadow(color: .black, radius: card.isSelected ? 2 : 0, y: 1).animation(.linear(duration: 0.1), value: card.isSelected)
-            cardShape.fill().foregroundColor(card.isSelected ? .yellow : .white).animation(.linear(duration: 0.1), value: card.isSelected)
-            
+			cardShape.stroke(lineWidth: DrawingConstants.StrokeWidth).shadow(color: .black.opacity(0.5), radius: card.isSelected ? 2 : 0, y: 1).animation(.linear(duration: 0.1), value: card.isSelected)
+			cardShape.fill().foregroundColor(card.isSelected ? .yellow.opacity(0.8) : .white).animation(.linear(duration: 0.1), value: card.isSelected)
+
             VStack {
 				ForEach((1...figure.getQuantity()), id: \.self) { _ in
                     ZStack {
@@ -35,7 +35,7 @@ struct Card: View {
     private struct DrawingConstants {
         static let CornerRadius = CGFloat(10)
         static let StrokeWidth = CGFloat(2)
-        static let FigureFrameWidth = CGFloat(44)
+        static let FigureFrameWidth = CGFloat(40)
         static let FigureFrameHeight = CGFloat(DrawingConstants.FigureFrameWidth/2)
     }
 }

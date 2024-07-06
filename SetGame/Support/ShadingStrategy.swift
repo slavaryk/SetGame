@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol ShadingStrategy {
+protocol ShadingStrategy: Sendable {
     func getShadingOpacity() -> CGFloat
 }
 

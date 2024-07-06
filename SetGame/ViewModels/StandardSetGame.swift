@@ -38,14 +38,18 @@ class StandardSetGame: ObservableObject {
             print("Unexpected error: \(error)")
         }
 
-		checkSelectedCardsIfReady()
+		if selectedCards.count == StandardSetGame.LENGTH_TO_CHECK_CARDS {
+			checkSelectedCards()
+		}
     }
 
-	func checkSelectedCardsIfReady() {
-		if selectedCards.count == StandardSetGame.LENGTH_TO_CHECK_CARDS {
-			if checkIfCardsInSet() {
-				markSelectedCardsAsInSetAndUnselectThem()
-				removeExtraCardsIfNeeded()
+	func checkSelectedCards() {
+		if checkIfCardsInSet() {
+			markSelectedCardsAsInSetAndUnselectThem()
+			removeExtraCardsIfNeeded()
+		} else {
+			selectedCards.forEach { card in
+				toggleCardSelection(cardId: card.id)
 			}
 		}
 	}

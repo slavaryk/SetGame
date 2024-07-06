@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol ColorStrategy {
+protocol ColorStrategy: Sendable {
     func getColor() -> Color
 }
 
