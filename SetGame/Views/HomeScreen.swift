@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
 	private let menuItems: [MenuItem] = [
+		MenuItem(destination: .Continue),
 		MenuItem(destination: .NewGame),
 		MenuItem(destination: .MaxScore),
 		MenuItem(destination: .History),
@@ -27,7 +28,8 @@ struct HomeScreen: View {
 			.navigationTitle("Set Game")
 			.navigationDestination(for: MenuItem.self) { item in
 				switch item.destination {
-				case .NewGame: Game()
+				case .Continue: Game(isContinue: true)
+				case .NewGame: Game(isContinue: false)
 				case .MaxScore: Text("Max score here")
 				case .History: Text("This is history")
 				}
@@ -38,6 +40,7 @@ struct HomeScreen: View {
 
 struct MenuItem: Identifiable, Hashable {
 	enum Destination: String {
+		case Continue = "Continue"
 		case NewGame = "New Game"
 		case MaxScore = "Max Score"
 		case History = "History"

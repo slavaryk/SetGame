@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct Game: View {
-    private let addCardsButtonText = "More cards"
-    
-    @ObservedObject private var viewModel = StandardSetGame()
-    
+    private static let ADD_CARDS_BUTTON_TEXT = "More cards"
+
+	@ObservedObject private var viewModel: StandardSetGame
+
+	init(isContinue: Bool) {
+		viewModel = StandardSetGame(isContinue: isContinue)
+	}
+
     var body: some View {
         VStack(spacing: 30.0) {
 			GeometryReader { geometry in
@@ -29,7 +33,7 @@ struct Game: View {
 				}
 			}
 
-            GameButton { Text(addCardsButtonText) }
+			GameButton { Text(Game.ADD_CARDS_BUTTON_TEXT) }
             action: { viewModel.addExtraCards() }
         }
     }
@@ -37,6 +41,6 @@ struct Game: View {
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        Game()
+        Game(isContinue: false)
     }
 }

@@ -12,10 +12,20 @@ class StandardSetGame: ObservableObject {
 
 	static let LENGTH_TO_CHECK_CARDS = 3
 
-    @Published var setGame: SetGame = SetGame()
+	static var currentGame: SetGame?
+
+    @Published var setGame: SetGame
     
     var pile: [SetGame.Card] { setGame.pile }
 	var selectedCards: [SetGame.Card] { setGame.selectedCards }
+
+	init(isContinue: Bool) {
+		if (isContinue) {
+			self.setGame = StandardSetGame.currentGame!
+		} else {
+			self.setGame = SetGame()
+		}
+	}
 
 	func addExtraCards() {
 		setGame.addExtraCards()
