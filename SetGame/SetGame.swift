@@ -24,30 +24,10 @@ struct SetGame {
 		}
 	}
 
-    init() {
-        setupCards()
-    }
+	mutating func setCards(cards: [Card]) {
+		self.cards = cards
+	}
 
-    mutating func setupCards() {
-        var idCounter = 1
-        
-        for shape in Triplet.allCases {
-            for shading in Triplet.allCases {
-                for color in Triplet.allCases {
-                    for quantity in Triplet.allCases {
-                        cards.append(Card(id: idCounter, shape: shape, shading: shading, color: color, quantity: quantity))
-                        idCounter += 1
-                    }
-                    idCounter += 1
-                }
-                idCounter += 1
-            }
-            idCounter += 1
-        }
-        
-        cards.shuffle()
-    }
-    
     mutating func toggleCardSelection(id: Int) throws {
         guard let cardIndex = cards.firstIndex(where: { $0.id == id }) else { throw SetGameError.noSuchId(id: id) }
         cards[cardIndex].isSelected = !cards[cardIndex].isSelected
@@ -61,6 +41,19 @@ struct SetGame {
 	mutating func removeExtraCardsIfNeeded() {
 		let newSize = pileSize - SetGame.EXTRA_CARDS_DELTA
 		pileSize = max(newSize, SetGame.MIN_PILE_SIZE_BEFORE_EMPTINESS)
+	}
+
+	/**
+	 TODO:
+	1) Write tests []
+	 */
+	mutating func markAsSetAndUnselect(_ cardList: [Card]) {
+		for card in cardList {
+			let cardIndex = cards.firstIndex(where: { $0.id == card.id })
+
+			cards[cardIndex!].isInSet = true
+			cards[cardIndex!].isSelected = false
+		}
 	}
 
     func checkIfCardsInSet(_ cardList: [Card]) -> Bool {
@@ -97,28 +90,11 @@ struct SetGame {
 	 1) Write tests []
 	 */
 	func checkInequalityOf(_ cardList: [Card], for key: String) -> Bool {
-		var isUnequal = false
-
-		for card in cardList {
-			isUnequal = cardList.allSatisfy {
-				card.id == $0.id ? true : card[triplet: key] != $0[triplet: key]
-			}
+		let cardListTriplets = cardList.map {
+			$0[triplet: key]
 		}
 
-		return isUnequal
-	}
-
-	/**
-	 TODO:
-	1) Write tests []
-	 */
-	mutating func markAsSetAndUnselect(_ cardList: [Card]) {
-		for card in cardList {
-			let cardIndex = cards.firstIndex(where: { $0.id == card.id })
-
-			cards[cardIndex!].isInSet = true
-			cards[cardIndex!].isSelected = false
-		}
+		return Set(cardListTriplets).count == 3
 	}
 
     struct Card: Identifiable, Equatable {
@@ -141,12 +117,45 @@ struct SetGame {
 		}
     }
 
-    enum Triplet: CaseIterable {
+    enum Triplet: CaseIterable, Codable {
         case first, second, third
+
+		func toString() -> String {
+			switch self {
+			case .first: return "first"
+			case .second: return "second"
+			case .third: return "third"
+			}
+		}
+
+		func toInt() -> Int16 {
+			switch self {
+			case .first: return Int16(1)
+			case .second: return Int16(2)
+			case .third: return Int16(3)
+			}
+		}
+
+		static func fromString(_ value: String) -> Triplet {
+			switch value {
+			case "first": return Triplet.first
+			case "second": return Triplet.second
+			case "third": return Triplet.third
+			default: return Triplet.first
+			}
+		}
+
+		static func fromInt(_ value: Int) -> Triplet {
+			switch value {
+			case 1: return Triplet.first
+			case 2: return Triplet.second
+			case 3: return Triplet.third
+			default: return Triplet.first
+			}
+		}
     }
     
     enum SetGameError: Error {
         case noSuchId(id: Int)
-		case invalidAmountOfCards
     }
 }

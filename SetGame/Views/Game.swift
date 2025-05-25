@@ -22,7 +22,7 @@ struct Game: View {
 				ScrollView {
 					LazyVGrid(columns: [GridItem(.adaptive(minimum: geometry.size.width/7))]) {
 						ForEach(viewModel.pile) { card in
-							Card(card: card).aspectRatio(2/3, contentMode: .fill)
+							SetCard(card: card).aspectRatio(2/3, contentMode: .fill)
 								.onTapGesture {
 									viewModel.toggleCardSelection(cardId: card.id)
 								}

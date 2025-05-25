@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Card: View {
+struct SetCard: View {
     let card: SetGame.Card
     
     var body: some View {
